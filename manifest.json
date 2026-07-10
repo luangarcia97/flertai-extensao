@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "FlertAI — Assistente de Mensagens para Tinder",
+  "version": "0.12.0",
+  "description": "Gera aberturas e sugere respostas inteligentes no Tinder usando IA. (Beta — backend próprio, login por email.)",
+  "permissions": [
+    "storage",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://tinder.com/*",
+    "https://*.gotinder.com/*",
+    "https://*.supabase.co/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "FlertAI"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["https://tinder.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://flertai-landing.netlify.app/*"],
+      "js": ["bridge.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

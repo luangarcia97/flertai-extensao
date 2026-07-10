@@ -1,0 +1,237 @@
+/* FlertAI — estilos do painel injetado. Prefixo #flertai- e !important para
+   evitar conflito com o CSS do Tinder. */
+
+#flertai-launcher {
+  position: fixed !important;
+  right: 24px !important;
+  bottom: 24px !important;
+  z-index: 2147483646 !important;
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: linear-gradient(135deg, #fd297b, #ff5864, #ff655b) !important;
+  color: #fff !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.15s ease !important;
+}
+#flertai-launcher:hover { transform: scale(1.08) !important; }
+
+#flertai-panel {
+  position: fixed !important;
+  right: 24px !important;
+  bottom: 88px !important;
+  z-index: 2147483647 !important;
+  width: 340px !important;
+  max-height: 80vh !important;
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 14px !important;
+}
+
+#flertai-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 12px 14px !important;
+  background: linear-gradient(135deg, #fd297b, #ff5864) !important;
+  color: #fff !important;
+}
+#flertai-header .flertai-title { font-weight: 700 !important; font-size: 15px !important; }
+.flertai-header-actions { display: flex !important; align-items: center !important; gap: 8px !important; }
+.flertai-usage {
+  font-size: 11px !important;
+  background: rgba(255,255,255,0.25) !important;
+  padding: 2px 8px !important;
+  border-radius: 10px !important;
+}
+#flertai-close {
+  background: transparent !important; border: none !important; color: #fff !important;
+  font-size: 16px !important; cursor: pointer !important; line-height: 1 !important;
+}
+
+#flertai-tabs {
+  display: flex !important;
+  background: #fafafa !important;
+  border-bottom: 1px solid #eee !important;
+}
+.flertai-tab {
+  flex: 1 !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 10px 4px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #999 !important;
+  cursor: pointer !important;
+  border-bottom: 2px solid transparent !important;
+}
+.flertai-tab-active {
+  color: #fd297b !important;
+  border-bottom-color: #fd297b !important;
+}
+
+#flertai-body {
+  padding: 12px 14px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.flertai-pane { display: flex !important; flex-direction: column !important; gap: 8px !important; }
+.flertai-hidden { display: none !important; }
+
+#flertai-panel input[type=text] {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  border: 1px solid #ddd !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+  font-size: 13px !important;
+  font-family: inherit !important;
+  background: #fafafa !important;
+  color: #1a1a1a !important;
+}
+
+.flertai-analysis {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  color: #444 !important;
+  background: #f5f5f7 !important;
+  border-radius: 8px !important;
+  padding: 10px !important;
+  white-space: pre-line !important;
+}
+.flertai-score {
+  display: inline-block !important;
+  background: #fd297b !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  padding: 1px 8px !important;
+  border-radius: 10px !important;
+  font-size: 12px !important;
+}
+
+.flertai-hist-item {
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  padding: 8px !important;
+  margin-bottom: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+.flertai-hist-head { font-size: 11px !important; color: #888 !important; font-weight: 600 !important; }
+.flertai-hist-foot { font-size: 11px !important; color: #fd297b !important; font-weight: 600 !important; margin-top: 2px !important; }
+.flertai-empty { font-size: 12px !important; color: #aaa !important; text-align: center !important; }
+
+.flertai-row { display: flex !important; gap: 8px !important; align-items: center !important; flex-wrap: wrap !important; }
+.flertai-check { font-size: 12px !important; color: #444 !important; display: flex !important; align-items: center !important; gap: 4px !important; white-space: nowrap !important; }
+.flertai-label { font-size: 11px !important; font-weight: 600 !important; color: #888 !important; margin-top: 4px !important; }
+
+#flertai-panel textarea,
+#flertai-panel select {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  border: 1px solid #ddd !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+  font-size: 13px !important;
+  font-family: inherit !important;
+  resize: vertical !important;
+  background: #fafafa !important;
+  color: #1a1a1a !important;
+}
+#flertai-tone { width: auto !important; flex: 1 !important; }
+
+.flertai-actions { display: flex !important; gap: 6px !important; margin-top: 6px !important; }
+.flertai-primary {
+  flex: 1 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 9px 6px !important;
+  background: linear-gradient(135deg, #fd297b, #ff5864) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+}
+.flertai-primary:disabled { opacity: 0.5 !important; cursor: default !important; }
+.flertai-secondary {
+  border: 1px solid #ddd !important;
+  background: #fff !important;
+  color: #444 !important;
+  border-radius: 8px !important;
+  padding: 8px 10px !important;
+  font-size: 12px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+}
+
+.flertai-coach {
+  width: 100% !important;
+  border: 1px solid #fd297b !important;
+  background: #fff !important;
+  color: #fd297b !important;
+  border-radius: 8px !important;
+  padding: 9px 6px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  margin-top: 2px !important;
+}
+.flertai-coach:disabled { opacity: 0.5 !important; cursor: default !important; }
+.flertai-stage {
+  display: inline-block !important;
+  background: #ede7f6 !important;
+  color: #5e35b1 !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  padding: 2px 10px !important;
+  border-radius: 10px !important;
+  margin-bottom: 6px !important;
+}
+.flertai-verdict {
+  font-weight: 700 !important;
+  color: #c2185b !important;
+  font-size: 13px !important;
+  margin-bottom: 6px !important;
+}
+
+.flertai-status { font-size: 12px !important; color: #666 !important; min-height: 16px !important; }
+.flertai-status.flertai-error { color: #d6336c !important; }
+
+.flertai-card {
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  padding: 10px !important;
+  background: #fff5f8 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+.flertai-card p { margin: 0 !important; font-size: 13px !important; line-height: 1.4 !important; color: #1a1a1a !important; }
+.flertai-copy {
+  align-self: flex-end !important;
+  border: none !important;
+  background: #fd297b !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+}
+
+.flertai-footer { font-size: 10px !important; color: #aaa !important; text-align: center !important; margin-top: 4px !important; }

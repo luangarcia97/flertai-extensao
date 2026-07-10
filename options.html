@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>FlertAI — Opções</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #faf7f8; color: #1a1a1a; max-width: 560px; margin: 0 auto; padding: 32px 24px; }
+    h1 { font-size: 22px; background: linear-gradient(135deg,#fd297b,#ff5864); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    h2 { font-size: 15px; margin: 0 0 14px; }
+    .field { margin-bottom: 18px; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 14px; }
+    input[type=text], input[type=email], select, textarea { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; font-family: inherit; }
+    textarea { resize: vertical; }
+    .hint { font-size: 12px; color: #888; margin-top: 4px; }
+    button { background: linear-gradient(135deg,#fd297b,#ff5864); color:#fff; border:none; border-radius: 8px; padding: 11px 20px; font-weight: 600; font-size: 14px; cursor: pointer; }
+    button.secondary { background: #fff; color: #d6336c; border: 1px solid #ffd6e3; }
+    button:disabled { opacity: .55; cursor: default; }
+    .saved { color: #2b8a3e; font-size: 13px; margin-left: 12px; }
+    .error { color: #d6336c; font-size: 13px; margin-top: 8px; }
+    .card { background:#fff; border:1px solid #eee; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .account-line { display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:14px; }
+    .badge { display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; font-weight:700; }
+    .badge.pro { background:#fff0f5; color:#d6336c; border:1px solid #ffd6e3; }
+    .badge.free { background:#f1f3f5; color:#495057; border:1px solid #dee2e6; }
+    .note { background:#fff5f8; border:1px solid #ffd6e3; border-radius:8px; padding:12px; font-size:12px; color:#9b2c4f; margin-top:8px; }
+    .row { display:flex; gap:10px; }
+    .row > * { flex:1; }
+    .row > button { flex:0 0 auto; }
+  </style>
+</head>
+<body>
+  <h1>✦ FlertAI — Opções</h1>
+
+  <!-- ============ CONTA ============ -->
+  <div class="card">
+    <h2>Sua conta</h2>
+
+    <!-- Estado: deslogado, passo 1 (email) -->
+    <div id="auth-step-email" style="display:none;">
+      <div class="field">
+        <label for="email">Email</label>
+        <div class="row">
+          <input type="email" id="email" placeholder="voce@exemplo.com" autocomplete="email" />
+          <button id="sendCode">Enviar código</button>
+        </div>
+        <div class="hint">Enviamos um código de 6 dígitos para o seu email. Sem senha, sem complicação.</div>
+      </div>
+    </div>
+
+    <!-- Estado: deslogado, passo 2 (código) -->
+    <div id="auth-step-code" style="display:none;">
+      <div class="field">
+        <label for="code">Código recebido por email</label>
+        <div class="row">
+          <input type="text" id="code" placeholder="123456" inputmode="numeric" maxlength="6" autocomplete="one-time-code" />
+          <button id="verifyCode">Entrar</button>
+        </div>
+        <div class="hint">Enviado para <span id="sentTo"></span>. <a href="#" id="changeEmail">Trocar email</a></div>
+      </div>
+    </div>
+
+    <!-- Estado: logado -->
+    <div id="auth-logged" style="display:none;">
+      <div class="account-line">
+        <div>
+          <div id="accEmail" style="font-weight:600;"></div>
+          <div class="hint" id="accUsage"></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="badge" id="accPlan"></span>
+          <button class="secondary" id="logout">Sair</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="error" id="authError" style="display:none;"></div>
+    <div class="note" id="notConfigured" style="display:none;">Backend ainda não configurado — preencha <code>config.js</code> com a URL e a chave anon do projeto Supabase (passo a passo em <code>backend/README.md</code>).</div>
+  </div>
+
+  <!-- ============ PREFERÊNCIAS ============ -->
+  <div class="card">
+    <h2>Personalização</h2>
+
+    <div class="field">
+      <label for="tone">Tom padrão</label>
+      <select id="tone">
+        <option value="descontraido">Descontraído</option>
+        <option value="flerte">Flerte</option>
+        <option value="direto">Direto</option>
+        <option value="engracado">Engraçado</option>
+        <option value="fofo">Fofo</option>
+        <option value="intelectual">Intelectual</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="aboutMe">Sobre você (opcional)</label>
+      <textarea id="aboutMe" rows="3" placeholder="Ex: 32 anos, dev, gosto de trilha, surf e cozinhar. Humor sarcástico."></textarea>
+      <div class="hint">Ajuda a IA a gerar aberturas e respostas com a sua cara.</div>
+    </div>
+
+    <div class="field">
+      <label for="customInstructions">Instruções personalizadas (opcional)</label>
+      <textarea id="customInstructions" rows="3" placeholder="Ex: use gírias do RS, nunca use emoji, seja sempre breve."></textarea>
+      <div class="hint">Regras de estilo que a IA deve seguir em toda mensagem.</div>
+    </div>
+
+    <div class="field" style="margin-top:18px;">
+      <button id="save">Salvar</button>
+      <span class="saved" id="saved" style="display:none;">Salvo ✓</span>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
