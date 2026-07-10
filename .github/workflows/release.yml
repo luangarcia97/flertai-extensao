@@ -1,0 +1,79 @@
+name: Publicar release da extensão
+
+# A cada push na main, lê a versão do manifest.json e publica o release
+# correspondente (com o ZIP pronto para "Carregar sem compactação").
+# Se o release daquela versão já existir, não faz nada — então basta subir o
+# manifest com a versão nova para sair um release.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "manifest.json"
+      - "background.js"
+      - "bridge.js"
+      - "config.js"
+      - "content.js"
+      - "content.css"
+      - "popup.html"
+      - "popup.js"
+      - "options.html"
+      - "options.js"
+      - "icons/**"
+      - ".github/workflows/release.yml"
+  workflow_dispatch: {} # permite disparar manualmente pelo painel
+
+permissions:
+  contents: write # necessário para criar o release
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ler versão do manifest
+        id: v
+        run: echo "version=$(jq -r .version manifest.json)" >> "$GITHUB_OUTPUT"
+
+      - name: O release já existe?
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "v${{ steps.v.outputs.version }}" >/dev/null 2>&1; then
+            echo "Release v${{ steps.v.outputs.version }} já existe — nada a fazer."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Empacotar a extensão
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          zip -r "flertai-extensao-v${{ steps.v.outputs.version }}.zip" \
+            manifest.json background.js bridge.js config.js \
+            content.js content.css popup.html popup.js \
+            options.html options.js icons
+
+      - name: Publicar o release
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "v${{ steps.v.outputs.version }}" \
+            "flertai-extensao-v${{ steps.v.outputs.version }}.zip" \
+            --title "FlertAI v${{ steps.v.outputs.version }} — Extensão (beta)" \
+            --notes "$(cat <<'EOF'
+          ## Como instalar
+          1. Baixe o ZIP abaixo e **descompacte** numa pasta.
+          2. Abra o Chrome em `chrome://extensions`.
+          3. Ative o **Modo do desenvolvedor** (canto superior direito).
+          4. Clique em **Carregar sem compactação** e selecione a pasta descompactada.
+          5. Faça login com seu e-mail (código de 6 dígitos) — ou apenas entre em
+             [flertai-landing.netlify.app](https://flertai-landing.netlify.app), que a
+             extensão sincroniza a sessão sozinha.
+          6. Abra o Tinder, entre numa conversa e clique no botão ✦.
+
+          Grátis: 5 gerações/dia + 3 análises completas de boas-vindas.
+          EOF
+          )"
