@@ -1,4 +1,4 @@
-// FlertAI — Background service worker (Manifest V3) — v0.10.0
+// XavecAI — Background service worker (Manifest V3) — v0.10.0
 //
 // MUDANÇA DE ARQUITETURA (Fase 1 do roadmap): este arquivo NÃO chama mais a
 // Anthropic. Ele é um cliente do NOSSO backend (Supabase Edge Functions):
@@ -226,7 +226,7 @@ async function preparePhotos(urls) {
       out.push(await photoUrlToBase64(url));
     } catch (e) {
       // Se uma foto falhar, segue com as outras (melhor análise parcial que nenhuma).
-      console.warn("FlertAI: foto ignorada:", e.message);
+      console.warn("XavecAI: foto ignorada:", e.message);
     }
   }
   return out;

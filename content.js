@@ -1,4 +1,4 @@
-// FlertAI — Content script
+// XavecAI — Content script
 // Injeta o painel flutuante no Tinder com 2 abas: Mensagens e Perfil.
 //
 // OBS: o Tinder usa classes CSS ofuscadas que mudam com frequência. A leitura da
@@ -246,7 +246,7 @@
   function createLauncher() {
     const btn = document.createElement("button");
     btn.id = "flertai-launcher";
-    btn.title = "FlertAI";
+    btn.title = "XavecAI";
     btn.textContent = "✦";
     btn.addEventListener("click", togglePanel);
     document.body.appendChild(btn);
@@ -265,7 +265,7 @@
     panel.id = "flertai-panel";
     panel.innerHTML = `
       <div id="flertai-header">
-        <span class="flertai-title">✦ FlertAI</span>
+        <span class="flertai-title">✦ XavecAI</span>
         <div class="flertai-header-actions">
           <span id="flertai-usage" class="flertai-usage"></span>
           <button id="flertai-close" title="Fechar">✕</button>
@@ -323,7 +323,7 @@
           <div id="flertai-profile-results"></div>
         </div>
 
-        <div class="flertai-footer">FlertAI v<span id="flertai-version"></span> · revise antes de enviar</div>
+        <div class="flertai-footer">XavecAI v<span id="flertai-version"></span> · revise antes de enviar</div>
       </div>
     `;
     document.body.appendChild(panel);

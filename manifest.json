@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "FlertAI — Assistente de Mensagens para Tinder",
-  "version": "0.12.0",
-  "description": "Gera aberturas e sugere respostas inteligentes no Tinder usando IA. (Beta — backend próprio, login por email.)",
+  "name": "XavecAI — Assistente para apps de namoro",
+  "version": "0.13.0",
+  "description": "Gera aberturas e sugere respostas inteligentes em apps de namoro usando IA. (Beta — backend próprio, login por email.)",
   "permissions": [
     "storage",
     "clipboardWrite"
@@ -18,7 +18,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "FlertAI"
+    "default_title": "XavecAI"
   },
   "options_page": "options.html",
   "content_scripts": [

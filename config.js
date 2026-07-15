@@ -1,4 +1,4 @@
-// FlertAI — Configuração do backend.
+// XavecAI — Configuração do backend.
 // ÚNICO arquivo a preencher depois de criar o projeto no Supabase
 // (passo a passo em backend/README.md).
 //

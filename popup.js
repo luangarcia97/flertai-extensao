@@ -1,4 +1,4 @@
-// FlertAI — lógica do popup da barra de ferramentas (v0.10.0).
+// XavecAI — lógica do popup da barra de ferramentas (v0.10.0).
 // Mostra o status da conta vindo do BACKEND (a extensão só reflete).
 
 document.getElementById("openOptions").addEventListener("click", () => {

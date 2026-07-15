@@ -1,4 +1,4 @@
-// FlertAI — lógica da página de opções (v0.10.0).
+// XavecAI — lógica da página de opções (v0.10.0).
 // Conta (login por email + código) + preferências de personalização.
 // A chave de API sumiu daqui de propósito: ela agora vive só no servidor.
 

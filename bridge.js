@@ -1,4 +1,4 @@
-// FlertAI — Ponte entre a landing page e a extensão.
+// XavecAI — Ponte entre a landing page e a extensão.
 //
 // Problema: o site guarda a sessão em localStorage (origem da landing) e a
 // extensão em chrome.storage.local — armazenamentos separados. Sem esta ponte,
